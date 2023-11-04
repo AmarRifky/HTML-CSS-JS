@@ -15,7 +15,7 @@
 <body>
 
     <div class="div">
-        <form class="form" action="">
+        <form class="form" onsubmit="Registeruser(event)">
             <h2 class="head">Register</h2>
             <br>
             <label for="">Username</label>
@@ -31,10 +31,47 @@
             <input class="input" type="password" placeholder="Confrim password" id="Conpass" required />
             <br>
             <button type="Submit">Register</button>
+            <div class="error" id="errormessage"></div>
 
 
         </form>
     </div>
+
+    <script>
+
+        let errormessage;
+
+        const Registeruser = (event) => { //arrow function
+            event.preventDefault();
+            let username = document.getElementById("username").value;
+
+            let email1 = document.getElementById("Email").value;
+
+            let password1 = document.getElementById("password").value;
+
+            let conpass = document.getElementById("Conpass").value;
+
+            const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+            const passwordRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+            if(username.length < 8){
+                errormessage = "Username must have atleast 8 characters";
+            } else if(!emailRegex.test(email1)){
+                errormessage="This is not a valid Email address";
+            } else if (!password1.length < 8 || !passwordRegex.match(password1)){
+                errormessage="Password must have atleast 8 characters";
+            } else if (password1 !== conpass){
+                errormessage = "Password doesn't match"
+            } else {
+                alert ("Successfully registered");
+            }
+            document.getElementById("errormessage").innerHTML = errormessage; //to get all the error messages
+
+        }
+    </script>
+
+
 </body>
 
 </html>

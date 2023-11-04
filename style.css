@@ -29,3 +29,7 @@ label {
     font-family: 'Poppins', sans-serif;
     margin-left: 7px;
 }
+
+.error {
+    color: brown;
+}
